@@ -1,19 +1,23 @@
-//Llamar a la libreria
-const x = require("express");
-// Lo que se va a usar de la libreria
-const router = x.Router();
+const express = require("express");
+
+const router = express.Router();
+
 const authController = require("../controllers/authController");
-//Importa los controladores
+
+//importar el userController
 const userController = require("../controllers/userController");
+const {upload} = require("../middlewares/fileUpload");
 
-router.get("/", userController.getAllUsers);
+router.get('/', userController.getAllUsers);
 
-router.post("/", userController.createUser);
+router.post('/create', userController.createUser);
 
-router.put("/:id", userController.updateUser);
+router.put('/update/:id', upload.single("picture"), userController.updateUser);
 
-router.delete("/:id", userController.deleteUser);
+router.delete('/delete/:id', userController.deleteUser);
 
-router.post("/login", authController.authenticateUser);
+router.post('/login', authController.authenticateUser);
+
+router.get('/:email', userController.getUser)
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const uri = "mongodb+srv://usuario:contrase@Dbusers.patoitx.mongodb.net/DbUsers?retryWrites=true&w=majority";
+const uri = "mongodb+srv://usuario:contraseña@Dbusers.patoitx.mongodb.net/DbUsers?retryWrites=true&w=majority";
 
 mongoose
   .connect(uri, {

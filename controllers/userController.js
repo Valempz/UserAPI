@@ -66,6 +66,12 @@ exports.updateUser = (req, res) => {
 
 exports.deleteUser = (req, res) => {
     const {id}= req.params;
+
+    if(req.user.role !== "admin"){
+        return res.status(401).json({error: "Acceso Denegado"})
+    }
+
+
     userModel.findByIdAndDelete(id)
     .then(user => {
         if(!user)throw new Error(`user with ID ${id} not found`);
